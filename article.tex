@@ -1,0 +1,324 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% LateX Template of Björn Schröder
+% v0.1
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Standard Praeamble %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper,openright, oneside
+    %,twocolumn, empty
+    ]{memoir}
+
+%\usepackage[isogold]{mempages}
+%\usepackage[vdqi]{mempages}
+\usepackage[laurentian]{mempages}
+%\usepackage[tufte]{mempages}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[american]{babel} % Hyphenation patterns if we wanted German
+\renewcommand{\listtablename}{bla} 
+\renewcommand{\listfigurename}{bla} 
+\renewcommand{\contentsname}{bla}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% My Standard packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{microtype} 
+\usepackage{overpic}
+\usepackage[dvipsnames]{xcolor}
+    \definecolor{ared}{rgb}{.647,.129,.149} 
+    \definecolor{ablue}{RGB}{0,76,128}
+    \definecolor{apink}{RGB}{128,0,76}
+    \definecolor{agrey}{RGB}{102,102,102}
+    \definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+    \definecolor{namecolor}{cmyk}{1,.50,0,.10} 
+    \definecolor{mygreen}{rgb}{0,0.6,0}
+    \definecolor{mygray}{gray}{0.95}
+    \definecolor{mymauve}{rgb}{0.58,0,0.82}
+\renewcommand\colorchapnum{\color{ablue}}
+\renewcommand\colorchaptitle{\color{ablue}}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{titlesec}
+  %\titleformat{⟨command⟩}[⟨shape⟩]{⟨format⟩}{⟨label⟩}{⟨sep⟩}{⟨before-code⟩}[⟨after-code⟩]
+  \titleformat{\section}{\color{ablue}\normalfont\LARGE\bfseries}{}{0pt}{}[\titlerule]
+  \titleformat{\subsection}{\color{ablue}\normalfont\large\bfseries}{}{0pt}{}
+  \titleformat{\subsubsection}{\color{ablue}\normalfont\large\bfseries}{}{0pt}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Useful links and references
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% http://tex.stackexchange.com/questions/19264/techniques-and-packages-to-keep-up-with-good-practices
+% http://detexify.kirelabs.org/classify.html
+% http://tex.stackexchange.com/questions/553/what-packages-do-people-load-by-default-in-latex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% List of useful packages and associated usecases
+%%%%%% Comment if you dont need them
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\RequirePackage[l2tabu,orthodox]{nag}% Old habits die hard. All the same, there are
+                                     % commands, classes and packages which are 
+                                     % outdated and superseded. nag provides routines
+                                     % to warn the user about the use of those.
+%\usepackage{amssymb}
+%\usepackage{yfonts}
+%\usepackage{sidecap}
+%\usepackage{textcomp}
+%\usepackage{mathptmx}
+%\usepackage{courier}
+%\usepackage{latexsym}
+%\usepackage{amsmath}
+%\usepackage{amstext}
+
+\usepackage{listings}
+\lstset{ %
+    backgroundcolor=\color{mygray},  % choose the background color
+    basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+    breakatwhitespace=false,         % sets if automatic breaks should only happen at 
+                                     % whitespace
+    breaklines=true,                 % sets automatic line breaking
+    captionpos=b,                    % sets the caption-position to bottom
+    commentstyle=\color{mygreen},    % comment style
+    deletekeywords={...},            % if you want to delete keywords from the given language
+    escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+    extendedchars=true,              % lets you use non-ASCII characters; for 8-bits 
+                                     % encodings only, does not work with UTF-8
+    frame=single,                    % adds a frame around the code
+    keepspaces=true,                 % keeps spaces in text, useful for keeping indentation 
+                                     % of code (possibly needs columns=flexible)
+    language=Python,                 % the language of the code
+    morekeywords={*,...},            % if you want to add more keywords to the set
+    numbers=left,                    % where to put the line-numbers; possible values are 
+                                     % (none, left, right)
+    numbersep=5pt,                   % how far the line-numbers are from the code
+    numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+    rulecolor=\color{black},         % if not set, the frame-color may be changed on 
+                                     % line-breaks within not-black text (e.g. comments 
+                                     % (green here))
+    showspaces=false,                % show spaces everywhere adding particular underscores; 
+                                     % it overrides 'showstringspaces'
+    showstringspaces=false,          % underline spaces within strings only
+    showtabs=false,                  % show tabs within strings adding particular underscores
+    stepnumber=2,                    % the step between two line-numbers. If it's 1, each 
+                                     % line will be numbered
+    stringstyle=\color{mymauve},     % string literal style
+    tabsize=2,                       % sets default tabsize to 2 spaces
+    title=\lstname                   % show the filename of files included with 
+                                     % \lstinputlisting; also try caption instead of title
+}
+
+\newcommand{\incl}[1]{\colorbox{mygray}{\lstinline{#1}} } 
+\newcommand{\code}[1]{\colorbox{mygray}{{\texttt{#1}}}}
+
+\usepackage[style=apa,backend=biber]{biblatex} % APA citations
+%% I used to use this:
+%\usepackage[sort&compress]{natbib}
+%    \bibpunct{[}{]}{,}{s}{}{}
+%    \bibliographystyle{Bjoern}
+
+\usepackage[some]{background}
+%\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{blindtext}
+\usepackage{pifont}
+\usepackage{acronym}
+\usepackage[textstyle,squaren]{SIunits}
+%    \addunit{\M}{\textsc{m}}
+%    \addunit{\CV}{\textsc{cv}}
+%    \addunit{\dalton}{\textsc{D}a}
+%    \addunit{\mol}{mol}
+\usepackage{abstract}
+\usepackage{ifthen}
+%\usepackage{picins}
+\usepackage{url}
+\usepackage{fancybox}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{floatflt}
+\usepackage{rotating}
+\usepackage{lastpage}
+\usepackage{currvita}
+\usepackage{python}
+\usepackage[small,nooneline,bf]{caption}
+
+%Starratings in Latex
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\newcommand\score[2]{
+\pgfmathsetmacro\pgfxa{#1+1}
+\tikzstyle{scorestars}=[star, star points=5, star point ratio=2.25, draw,inner sep=1.3pt,anchor=outer point 3]
+  \begin{tikzpicture}[baseline]
+    \foreach \i in {1,...,#2} {
+    \pgfmathparse{(\i<=#1?"blue":"gray")}
+    \edef\starcolor{\pgfmathresult}
+    \draw (\i*1.75ex,0) node[name=star\i,scorestars,fill=\starcolor]  {};
+   }
+  \end{tikzpicture}
+}
+
+
+\usepackage{todonotes}
+    %\todo{Rewrite this answer \ldots}
+    %\listoftodos
+
+\usepackage{hyperref}
+    \hypersetup{
+        pdftoolbar=true,        % show Acrobat’s toolbar?
+        pdfmenubar=true,        % show Acrobat’s menu?
+        pdffitwindow=false,     % window fit to page when opened
+        pdfstartview={FitH},    % fits the width of the page to the window
+        pdftitle={title},       % title
+        pdfauthor={Björn Schröder},     % author
+        pdfsubject={Subject},   % subject of the document
+        pdfcreator={Björn Schröder},   % creator of the document
+        pdfproducer={Björn Schröder}, % producer of the document
+        pdfnewwindow=true,      % links in new window
+        colorlinks=true,       % false: boxed links; true: colored links
+        % color of internal links (change box color with linkbordercolor)
+        linkcolor=ared,          
+        citecolor=ared,        % color of links to bibliography
+        filecolor=ared,      % color of file links
+        urlcolor=black           % color of external links
+        }
+
+%\hyperlabel{label}{text}
+\newcommand{\htarget}[2]{\hypertarget{#1}{{\color{apink}#2}\label{#1}}} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Coverpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\backgroundsetup{
+    scale=1,
+    angle=0,
+    opacity=1,
+    contents={\begin{tikzpicture}[remember picture,overlay]
+     \path [fill=titlepagecolor] (current page.west)rectangle (current page.north east); 
+     \draw [color=white, very thick] (5,0)--(5,0.5\paperheight);
+    \end{tikzpicture}}
+    }
+
+\makeatletter                   
+\def\printauthor{%                  
+    {\large \@author}}          
+\makeatother
+
+\author{%
+    Björn Schröder
+    }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Some chapterstyle alternatives for memoir class
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\chapterstyle{hangnum}
+%\chapterstyle{companion}
+%\chapterstyle{demo}
+%\chapterstyle{brotherton}
+%\chapterstyle{bianchi}
+%\chapterstyle{dash}
+%\chapterstyle{ell}
+%\chapterstyle{demo3}
+%\chapterstyle{veelo}
+\chapterstyle{pedersen}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Further customizing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\widowpenalty100000
+%\brokenpenalty100000
+
+\definecolor{lightgray}{gray}{0.90}
+\newcommand\cb[1]{\fcolorbox{lightgray}{lightgray}{#1}}
+
+% nested items symbol
+\renewcommand{\labelitemi}{\tiny{\ding{110}}} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Modify the margin notes to flushleft
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\marginparmargin{outer}
+\let\oldmarginpar\marginpar
+\renewcommand\marginpar[2][]{%
+    \oldmarginpar{\mpjustification #2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\rmdefault}{lsbj}
+
+\newcommand{\stats}[4]{%
+    \parbox{0.18\textwidth}{% 
+        \centering
+        \begin{overpic}[width=0.10\textwidth]{./icons/chaplain.pdf}
+            \put(50,48){\makebox(0,0){{\large\color{white}#4}}}
+        \end{overpic}\\
+        \textsc{\textbf{\color{agrey}Wounds}}
+        }
+    \ding{117}
+    \parbox{0.18\textwidth}{% 
+        \centering
+        \begin{overpic}[width=0.10\textwidth]{./icons/chaplain.pdf}
+            \put(50,48){\makebox(0,0){{\Large\color{white}#1}}}
+        \end{overpic}\\
+        \textsc{\textbf{\color{agrey}Move}}
+        }
+    \ding{117}
+    \parbox{0.18\textwidth}{% 
+        \centering
+        \begin{overpic}[width=0.10\textwidth]{./icons/chaplain.pdf}
+            \put(50,48){\makebox(0,0){{\large\color{white}#2}}}
+        \end{overpic}\\
+        \textsc{\textbf{\color{agrey}Save}}
+        }
+    \ding{117}
+    \parbox{0.18\textwidth}{% 
+        \centering
+        \begin{overpic}[width=0.10\textwidth]{./icons/chaplain.pdf}
+            \put(50,48){\makebox(0,0){{\large\color{white}#3}}}
+        \end{overpic}\\
+        \textsc{\textbf{\color{agrey}Bravery}}
+        }\\
+        
+        \vspace{5pt}
+}
+
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Titlepages 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\frontmatter
+\input{./child_cover.tex}
+%\input{./child_titlepages.tex}
+\newpage
+\tableofcontents*
+\newpage
+%\listoffigures
+%\newpage
+%\listoftables
+%\newpage
+%\mainmatter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Put child docuemtes here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{./content.tex}
+%\input{./child_exampletables.tex}
+%\Blinddocument
+%\blindmathtrue
+%\blindlist{description}[4]
+\end{document}

@@ -17,11 +17,23 @@
 %\usepackage[isogold]{mempages}
 %\usepackage[vdqi]{mempages}
 \usepackage[laurentian]{mempages}
+\usepackage{fontspec}
+\setmainfont{SabonNext LT}
+%\setmainfont{Averia Serif Libre}
+%\setmainfont{Chinzel}
+%\setmainfont{Cormorant Unicase}
+%\setmainfont{FrutigerNextLT}
+%\setmainfont{Adobe Caslon Pro}
+
+\usepackage{fontawesome}
+
 %\usepackage[tufte]{mempages}
 
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[american]{babel} % Hyphenation patterns if we wanted German
+%\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+%\usepackage[american]{babel} % Hyphenation patterns if we wanted German
+\usepackage{polyglossia}
+     \setdefaultlanguage{english}
 \renewcommand{\listtablename}{bla} 
 \renewcommand{\listfigurename}{bla} 
 \renewcommand{\contentsname}{bla}
@@ -54,6 +66,9 @@
   \titleformat{\subsection}{\color{ablue}\normalfont\large\bfseries}{}{0pt}{}
   \titleformat{\subsubsection}{\color{ablue}\normalfont\large\bfseries}{}{0pt}{}
 
+
+
+\usepackage{xstring}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% Useful links and references
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -126,10 +141,10 @@
 %\usepackage[sort&compress]{natbib}
 %    \bibpunct{[}{]}{,}{s}{}{}
 %    \bibliographystyle{Bjoern}
+\usepackage{csquotes}
 
 \usepackage[some]{background}
 %\usepackage{geometry}
-\usepackage{xcolor}
 \usepackage{blindtext}
 \usepackage{pifont}
 \usepackage{acronym}
@@ -150,6 +165,7 @@
 \usepackage{lastpage}
 \usepackage{currvita}
 \usepackage{python}
+\usepackage{xhfill}
 \usepackage[small,nooneline,bf]{caption}
 
 %Starratings in Latex
@@ -175,7 +191,7 @@
 \usepackage{hyperref}
     \hypersetup{
         pdftoolbar=true,        % show Acrobat’s toolbar?
-        pdfmenubar=true,        % show Acrobat’s menu?
+        pdfencoding=auto,
         pdffitwindow=false,     % window fit to page when opened
         pdfstartview={FitH},    % fits the width of the page to the window
         pdftitle={title},       % title
@@ -193,7 +209,7 @@
         }
 
 %\hyperlabel{label}{text}
-\newcommand{\htarget}[2]{\hypertarget{#1}{{\color{apink}#2}\label{#1}}} 
+\newcommand{\htarget}[2]{\protect\hypertarget{#1}{{\color{apink}#2}\label{#1}}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -255,10 +271,10 @@
 \marginparmargin{outer}
 \let\oldmarginpar\marginpar
 \renewcommand\marginpar[2][]{%
-    \oldmarginpar{\mpjustification #2}}
+    \oldmarginpar{\mpjustification {\small #2}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\renewcommand{\rmdefault}{lsbj}
+%\renewcommand{\rmdefault}{lsbj}
 %\usepackage[garamond]{mathdesign}
 
 \newcommand{\stats}[4]{%
@@ -297,6 +313,75 @@
         \vspace{5pt}
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bunch of commands for stattables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+\newcommand{\ndice}{%
+    \hspace{1em}\includegraphics[height=\fontcharht\font`\B]{./icons/w20.pdf}\hspace{1em}
+    }
+
+\newcommand{\nth}[1]{% 
+    {\color{agrey}\tiny\textsc{\textbf{#1}}} 
+    }
+
+\newcommand{\tline}[1]{%
+    \noexpandarg    
+    \StrSubstitute{#1}{:}{ & }[\myspecialtext]
+    \myspecialtext
+    }
+
+\newcommand{\inch}{%
+    \,in
+    }
+
+\newcommand{\Melee}{%
+    \hspace{1em}\includegraphics[height=1.2\fontcharht\font`\X]{./icons/meleesvg.pdf}\hspace{1em}
+    }
+
+\newcommand{\Missile}{%
+    \hspace{1em}\includegraphics[height=1.2\fontcharht\font`\X]{./icons/bow.pdf}\hspace{1em}
+    }
+
+\newcommand{\theader}{%
+    \nth{Type} & \nth{Weapon} & \nth{Range} & \nth{Attacks} & \nth{To Hit} & 
+    \nth{To Wound} & \nth{Rend} & \nth{Damage} \\[1ex] 
+    }
+
+\newcommand{\statsheader}[4]{%
+    \midrule[0.05ex]
+    \multicolumn{8}{l}{\hspace{5mm}
+                    Wounds {\normalsize{#1 }} 
+           \ndice Movement {\normalsize{#2 }}
+           \ndice     Save {\normalsize{#3+}}
+           \ndice  Bravery {\normalsize{#4 }}
+           } \\
+    \midrule[0.05ex]
+    \nth{Type} & \nth{Weapon} & \nth{Range} & \nth{Attacks} & \nth{To Hit} & 
+    \nth{To Wound} & \nth{Rend} & \nth{Damage} \\[1ex] 
+    }
+
+\newcommand{\ttitle}[1]{%
+    \multicolumn{8}{l}{
+        \textsc{\normalsize{\color{ablue} #1 }}} \\[1ex]
+    }
+
+\newcommand{\statstable}[1]{%
+    \begin{scriptsize}
+    \noindent
+    \begin{tabular}{clcccccc} %8 cols
+        \toprule
+        \nth{Type} & \nth{Weapon} & \nth{Range} & \nth{Attacks} & \nth{To Hit} & 
+        \nth{To Wound} & \nth{Rend} & \nth{Damage} \\
+        \midrule
+        %Tablecontent
+        #1%
+        \bottomrule
+    \end{tabular}
+    \end{scriptsize}
+    \vspace{1em}
+    }
+
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -317,6 +402,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Put child docuemtes here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\fontfamily{lsb}\selectfont
 \input{./content.tex}
 %\input{./child_exampletables.tex}
 %\Blinddocument
